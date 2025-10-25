@@ -31,22 +31,22 @@ Este proyecto es muy simple, pero representa el inicio de mi aprendizaje en desa
 ---
 
 ## 🚀 Estructura del proyecto
-
+```
 /
 ├── public/
-│ └── fonts/
+│   └── fonts/
 ├── src/
-│ ├── components/
-│ │ ├── Navbar.astro
-│ │ └── CustomTitle.astro
-│ ├── layouts/
-│ │ └── MainLayout.astro
-│ └── pages/
-│ ├── index.astro
-│ ├── about.astro
-│ └── 404.astro
+│   ├── components/
+│   │   ├── Navbar.astro
+│   │   └── CustomTitle.astro
+│   ├── layouts/
+│   │   └── MainLayout.astro
+│   └── pages/
+│       ├── index.astro
+│       ├── about.astro
+│       └── 404.astro
 └── dist/ (build final)
-
+```
 
 ---
 
