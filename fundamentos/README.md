@@ -1,43 +1,71 @@
-# Astro Starter Kit: Minimal
+# 🌱 Fundamentos
 
-```sh
-npm create astro@latest -- --template minimal
-```
+**Primer proyecto con Astro (2025)**  
+Explorando los fundamentos de **componentes**, **layouts** y **rutas**.  
+Por **Sergio Izquierdo**.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+---
 
-## 🚀 Project Structure
+## 🧩 Descripción
 
-Inside of your Astro project, you'll see the following folders and files:
+**Fundamentos** es mi primera página web creada con [Astro](https://astro.build/).  
+El objetivo de este proyecto fue comprender las bases del framework y practicar cómo estructurar un sitio estático moderno:
 
-```text
+- Creación de componentes reutilizables (`Navbar`, `CustomTitle`, etc.)
+- Uso de un layout principal para mantener consistencia en el diseño
+- Definición de rutas estáticas con el sistema de archivos de Astro
+- Primer contacto con el proceso de build y despliegue en Hostinger
+
+Este proyecto es muy simple, pero representa el inicio de mi aprendizaje en desarrollo web con Astro 🚀
+
+---
+
+## 🧠 Tecnologías utilizadas
+
+- [Astro](https://astro.build/)
+- HTML5
+- CSS3
+- JavaScript (mínimo uso)
+- Deploy mediante **Hostinger (FTP)**
+
+---
+
+## 🚀 Estructura del proyecto
+
 /
 ├── public/
+│ └── fonts/
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+│ ├── components/
+│ │ ├── Navbar.astro
+│ │ └── CustomTitle.astro
+│ ├── layouts/
+│ │ └── MainLayout.astro
+│ └── pages/
+│ ├── index.astro
+│ ├── about.astro
+│ └── 404.astro
+└── dist/ (build final)
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+---
 
-Any static assets, like images, can be placed in the `public/` directory.
+## 🌐 Despliegue
 
-## 🧞 Commands
+El sitio está desplegado en **Hostinger**, usando archivos estáticos generados por Astro (`npm run build`).  
+Se puede acceder en:
 
-All commands are run from the root of the project, from a terminal:
+👉 [https://fundamentos-astro.sergioizq.es](https://fundamentos-astro.sergioizq.es)
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+---
 
-## 👀 Want to learn more?
+## 💬 Reflexión personal
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Este proyecto marca el comienzo de mi aprendizaje con Astro.  
+Aunque es un sitio muy básico, me permitió entender la estructura y filosofía del framework, además de practicar la organización de componentes y layouts.  
+
+Mi objetivo es seguir creando proyectos más avanzados que reflejen mi progreso como desarrollador web.
+
+---
+
+🧑‍💻 *Hecho con curiosidad y aprendizaje por [Sergio Izquierdo](https://github.com/SergioIzq)*  
