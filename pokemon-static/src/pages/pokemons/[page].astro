@@ -19,42 +19,40 @@ const { page } = Astro.props;
 ---
 
 <MainLayout title={title}>
-	<h1 class="text-3xl">Listado de Pokémons</h1>
-	<hr />
-	<section
-		aria-label="Listado de Pokemons"
-		class="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-5 gap-4 mt-5"
-	>
-		{
-			page.data.map((pokemon) => (
+	<section aria-label="Listado de Pokémons" class="mt-5">
+		<!-- Título del listado -->
+		<h2 class="text-2xl font-bold text-blue-300 mb-4">
+			Listado de Pokémons
+		</h2>
+
+		<!-- Grid de Pokémons -->
+		<div class="grid grid-cols-1 sm:grid-cols-4 md:grid-cols-5 gap-4">
+			{
+				page.data.map((pokemon) => (
 					<PokemonCard
 						url={pokemon.url}
 						name={pokemon.name}
 						fromPage={page.currentPage}
 					/>
-			))
-		}
+				))
+			}
+		</div>
 	</section>
 
+	<!-- Paginación -->
 	<section class="flex mt-10 gap-2 items-center">
 		<a
-			class:list={[
-				"btn",
-				{
-					disabled: !page.url.prev,
-				},
-			]}
-			href={page.url.prev}>Anterior</a
+			class:list={["btn", { disabled: !page.url.prev }]}
+			href={page.url.prev}
 		>
+			Anterior
+		</a>
 		<a
-			class:list={[
-				"btn",
-				{
-					disabled: !page.url.next,
-				},
-			]}
-			href={page.url.next}>Siguiente</a
+			class:list={["btn", { disabled: !page.url.next }]}
+			href={page.url.next}
 		>
+			Siguiente
+		</a>
 
 		<div class="flex flex-1"></div>
 
