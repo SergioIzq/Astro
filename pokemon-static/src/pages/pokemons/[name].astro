@@ -1,0 +1,67 @@
+---
+import "@styles/global.css";
+
+import type { GetStaticPaths } from "astro";
+import type {
+    PokemonListResponse,
+    PokemonDetailResponse,
+} from "@interfaces/pokemon-list.response";
+
+import MainLayout from "@layouts/MainLayout.astro";
+import PokemonCard from "@components/pokemons/PokemonCard.astro";
+import PokemonDetail from "@components/pokemons/PokemonDetail.astro";
+
+export const getStaticPaths = (async () => {
+    const resp = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+    const { results } = (await resp.json()) as PokemonListResponse;
+
+    return results.map(({ name, url }) => ({
+        params: { name },
+        props: { url },
+    }));
+}) satisfies GetStaticPaths;
+
+const { name } = Astro.params;
+const { url } = Astro.props;
+
+const id = url.split("/").at(-2);
+const audioSrc = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${id}.ogg`;
+const imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+
+const resp = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+const {
+    abilities,
+    moves,
+    height,
+    species,
+    game_indices,
+    types,
+    stats,
+    sprites,
+    forms,
+    weight,
+} = (await resp.json()) as PokemonDetailResponse;
+---
+
+<MainLayout
+    title={`Pokémon - #${id} ${name}`}
+    description={`Detalles e información sobre el Pokémon ${name}.`}
+    image={imageSrc}
+>
+    <section class="mt-10 mx-10 flex flex-col justify-center items-center">
+        <div>
+            <h1 class="capitalize text-3xl">{name}</h1>
+        </div>
+
+        <PokemonCard name={name} url={url} isBig />
+
+        <audio controls class="mt-5">
+            <source src={audioSrc} type="audio/ogg" />
+            Tu navegador no soporta el elemento de audio.
+        </audio>
+    </section>
+
+    <section>
+        <PokemonDetail name={name} abilities={abilities} />
+    </section>
+</MainLayout>

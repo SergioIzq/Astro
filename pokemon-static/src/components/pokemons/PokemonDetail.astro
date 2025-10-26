@@ -1,0 +1,52 @@
+---
+import type { Ability } from "@interfaces/pokemon-list.response";
+
+interface Props {
+  name: string;
+  abilities: Ability[];
+}
+
+const { name, abilities } = Astro.props;
+
+const abilitiesData = await Promise.all(
+  abilities.map(async (item) => {
+    if (!item.ability?.url) return null;
+
+    const res = await fetch(item.ability.url);
+    const data = await res.json();
+
+    // Buscar solo la entrada en español
+    const effectEs =
+      data.effect_entries.find((entry: any) => entry.language.name === "es") ??
+      data.effect_entries.find((entry: any) => entry.language.name === "en");
+
+    return {
+      name: item.ability.name,
+      effect: effectEs?.effect ?? "",
+      short_effect: effectEs?.short_effect ?? "",
+    };
+  }),
+);
+---
+
+<h2 class="mt-10 mb-4 text-2xl font-bold text-white-800">
+  Habilidades de {name.charAt(0).toUpperCase() + name.substring(1, name.length)}
+</h2>
+
+<ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+  {
+    abilitiesData
+      .filter(
+        (
+          ability,
+        ): ability is { name: string; effect: string; short_effect: string } =>
+          ability !== null,
+      )
+      .map(({ name, short_effect }) => (
+        <li class="bg-white shadow rounded-lg p-4 hover:shadow-lg transition-shadow duration-200 flex flex-col">
+          <span class="font-semibold text-blue-500 capitalize">{name}</span>
+          <p class="text-gray-700 mt-1 text-sm">{short_effect}</p>
+        </li>
+      ))
+  }
+</ul>
