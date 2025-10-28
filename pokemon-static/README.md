@@ -1,43 +1,76 @@
-# Astro Starter Kit: Minimal
+#  pokedex-astro 
+![Logo de Pokémon](https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png)
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Una aplicación web visual para explorar el mundo Pokémon, construida con Astro, Tailwind CSS y la PokeAPI. Este es mi segundo proyecto desarrollado con Astro.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+[Proyecto desplegado](https://pokedex.sergioizq.es)
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## 📖 Sobre este proyecto
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+Este proyecto es una **Pokédex** que permite a los usuarios explorar información sobre distintos Pokémon de una manera visual, sencilla y rápida. La aplicación consume datos de la [PokeAPI](https://pokeapi.co/) para mostrar listados y detalles de cada criatura.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+El objetivo principal fue practicar la integración de APIs, el manejo de datos dinámicos y la construcción de una interfaz limpia y funcional utilizando tecnologías modernas.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### ✨ Características
 
-Any static assets, like images, can be placed in the `public/` directory.
+* Listado de Pokémon con scroll infinito (o paginación, ¡depende de cómo lo hayas implementado!).
+* Página de detalle para cada Pokémon (estadísticas, tipos, habilidades, etc.).
+* Diseño 100% responsive.
+* Interfaz rápida gracias al renderizado estático de Astro.
 
-## 🧞 Commands
+---
 
-All commands are run from the root of the project, from a terminal:
+## 🛠️ Tecnologías Utilizadas
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+El stack principal del proyecto es:
 
-## 👀 Want to learn more?
+* **[Astro](https://astro.build/)**: Framework web para construir sitios rápidos. Usado para el renderizado estático y la componentización.
+* **[Tailwind CSS](https://tailwindcss.com/)**: Framework de CSS utility-first para un diseño moderno y responsive.
+* **[PokeAPI](https://pokeapi.co/)**: La API REST gratuita de donde se obtienen todos los datos de los Pokémon.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---
+
+## 🎯 Aprendizajes
+
+Durante el desarrollo de este proyecto, los principales puntos de aprendizaje fueron:
+
+* **Consumo de APIs**: Practicar `fetch` para obtener datos de una API externa.
+* **Renderizado Dinámico en Astro**: Creación de páginas dinámicas (por ejemplo, `[id].astro` o `[pokemon].astro`) a partir de los datos de la API.
+* **Componentes Reutilizables**: Creación de componentes (como `PokemonCard.astro`) para mantener el código limpio y escalable.
+* **Manejo de Layouts**: Uso de `MainLayout.astro` para una estructura de página consistente.
+* **Estilado con Tailwind**: Afianzar conocimientos en Tailwind CSS para crear interfaces complejas y atractivas.
+
+---
+
+## 🚀 Cómo empezar
+
+Si quieres ejecutar este proyecto en tu máquina local, sigue estos pasos:
+
+1.  **Clona el repositorio:**
+    ```bash
+    git clone [https://github.com/SergioIzq/Astro](https://github.com/SergioIzq/Astro)
+    cd pokemon-static
+    ```
+
+2.  **Instala las dependencias:**
+    ```bash
+    npm install
+    # o pnpm install, yarn install
+    ```
+
+3.  **Ejecuta el servidor de desarrollo:**
+    ```bash
+    npm run dev
+    ```
+
+4.  Abre `http://localhost:4321` en tu navegador para ver el proyecto.
+
+---
+
+## 👨‍💻 Autor
+
+* **Sergio Izquierdo**
+* GitHub: `[@SergioIzq](https://github.com/SergioIzq)`
+* LinkedIn: `[Sergio Izquierdo](https://linkedin.com/in/sergioizquierdomoreno)`
