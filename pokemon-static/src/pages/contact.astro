@@ -1,0 +1,140 @@
+---
+import "@styles/global.css";
+import MainLayout from "@layouts/MainLayout.astro";
+
+const title = "Contacto | Pokémon Static";
+---
+
+<MainLayout title={title}>
+    <section class="mt-8 bg-slate-700 p-6 rounded-lg shadow-md text-white">
+        <h2 class="text-3xl font-semibold mb-4 text-blue-300">Contáctanos</h2>
+        <p class="mb-6 text-slate-200">
+            ¿Tienes dudas, sugerencias o quieres colaborar con el proyecto? ¡Nos
+            encantaría saber de ti!
+        </p>
+
+        <form
+            id="contactForm"
+            class="space-y-4 w-full mx-auto bg-slate-800 p-6 rounded-lg shadow-md"
+        >
+            <div>
+                <label for="nombre" class="block mb-1 text-blue-200"
+                    >Nombre</label
+                >
+                <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    required
+                    class="w-full p-2 rounded bg-slate-700 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                />
+            </div>
+
+            <div>
+                <label for="email" class="block mb-1 text-blue-200"
+                    >Correo electrónico</label
+                >
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    class="w-full p-2 rounded bg-slate-700 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                />
+            </div>
+
+            <div>
+                <label for="mensaje" class="block mb-1 text-blue-200"
+                    >Mensaje</label
+                >
+                <textarea
+                    id="mensaje"
+                    name="mensaje"
+                    rows="4"
+                    required
+                    class="w-full p-2 rounded bg-slate-700 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                ></textarea>
+            </div>
+
+            <button
+                type="submit"
+                class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition"
+            >
+                Enviar mensaje
+            </button>
+
+            <p id="statusMessage" class="text-center mt-3 text-slate-300"></p>
+        </form>
+    </section>
+
+    <div
+        id="loadingOverlay"
+        class="fixed inset-0 bg-black/50 items-center justify-center z-50 hidden"
+    >
+        <div
+            class="loader border-4 border-blue-400 border-t-white rounded-full w-12 h-12 animate-spin"
+        >
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById(
+            "contactForm",
+        ) as HTMLFormElement | null;
+        const statusMessage = document.getElementById(
+            "statusMessage",
+        ) as HTMLElement | null;
+        const loadingOverlay = document.getElementById("loadingOverlay");
+
+        if (form) {
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const data = {
+                    nombre: (form.querySelector("#nombre") as HTMLInputElement)
+                        .value,
+                    email: (form.querySelector("#email") as HTMLInputElement)
+                        .value,
+                    mensaje: (
+                        form.querySelector("#mensaje") as HTMLTextAreaElement
+                    ).value,
+                };
+
+                if (statusMessage)
+                    statusMessage.textContent = "Enviando mensaje...";
+                if (loadingOverlay) {
+                    loadingOverlay.classList.remove("hidden"); // mostrar overlay
+                    loadingOverlay.classList.add("flex"); // activa flex
+                }
+
+                try {
+                    const resp = await fetch(
+                        "https://gbackend.sergioizq.es/api/auth/contactoForm",
+                        {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(data),
+                        },
+                    );
+
+                    if (!resp.ok) throw new Error("Error al enviar");
+
+                    const result = await resp.json();
+                    if (statusMessage)
+                        statusMessage.textContent = "✅ " + result.mensaje;
+                    form.reset();
+                } catch (error) {
+                    if (statusMessage)
+                        statusMessage.textContent =
+                            "❌ Hubo un error al enviar el mensaje.";
+                    console.error(error);
+                } finally {
+                    if (loadingOverlay) {
+                        loadingOverlay.classList.add("hidden"); // oculta overlay
+                        loadingOverlay.classList.remove("flex"); // desactiva flex
+                    }
+                }
+            });
+        }
+    </script>
+</MainLayout>
