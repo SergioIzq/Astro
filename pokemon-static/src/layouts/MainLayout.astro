@@ -1,6 +1,5 @@
 ---
 import Navbar from "@components/Navbar.astro";
-import { ClientRouter } from "astro:transitions";
 import { siteInfo } from "../consts/site-info";
 
 interface Props {
@@ -31,7 +30,11 @@ const {
         <meta property="og:description" content={description} />
         <meta property="og:image" content={image} />
 
-        <ClientRouter />
+        <style>
+            @view-transition {
+                navigation: auto;
+            }
+        </style>
     </head>
     <body
         class="bg-linear-to-b from-slate-900 via-slate-800 to-slate-700 text-slate-100 font-sans min-h-screen flex flex-col items-center leading-relaxed mb-5"
